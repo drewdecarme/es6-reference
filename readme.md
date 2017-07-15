@@ -30,12 +30,14 @@ This guide is designed to be a resource that outlines all of the major concepts 
   - if `var` is defined outside of a block scope, it is hoisted to the global scope
 
 #### `let`
-`let`, unlike `var` is not hoisted to the top of a funciton declaration. Instead, `let` stays within its block. `let`
-  - replace `var` with `let` to declare a variable but limit the variables scope to only the current code block
-  - cannot redefine an already defined variable inside of a block scope
+`let` essentially replaces `var` except for the fact unlike `var`, `let` isn't hoisted to the top of the function declaration; it remains defined in its block level. Note that any variable cannot be redefined once it is already defined;
+```js
+var car = 'ford';
+let car = 'jeep'; // error
+```
 
-#### 
-Once the binding is defined, the binding cannot be changed. In addition to the singular value, `const` must be initalized on declaration.
+#### `const`
+Once the binding is defined, the binding cannot be changed. In addition to the singular value, `const` must be initialized on declaration.
 ```javascript
 const item = 30;    // valid
 item = 50;          // invalid
