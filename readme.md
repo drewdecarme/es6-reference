@@ -26,11 +26,33 @@ This guide is designed to be a resource that outlines all of the major concepts 
 
 ### Declarations
 #### `var`
-  - if `var` is defined inside of a block scope is hoisted to the top of the block
-  - if `var` is defined outside of a block scope, it is hoisted to the global scope
+`var` is always hoisted outside of its block scope and to its higher level function declaration
+```js
+var otherStuff = 'things'
+
+function stuff(otherStuff) {
+  if(otherStuff == 'things'){
+    var moreStuff = 'more things';
+  }
+  return this;
+}
+```
+... is actually ...
+```js
+var otherStuff = 'things';
+
+function stuff(otherStuff) {
+  var moreStuff = 'more things';
+  if(otherStuff == 'things'){
+  }
+  return this;
+}
+
+console.log(window.otherStuff)  // "things"
+```
 
 #### `let`
-`let` essentially replaces `var` except for the fact unlike `var`, `let` isn't hoisted to the top of the function declaration; it remains defined in its block level. Note that any variable cannot be redefined once it is already defined;
+`let` essentially replaces `var` except for the fact that unlike `var`, `let` isn't hoisted to the top of the function declaration; it remains defined in its block level. Note that any variable cannot be redefined once it is already defined.
 ```js
 var car = 'ford';
 let car = 'jeep'; // error
