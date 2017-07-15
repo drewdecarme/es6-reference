@@ -1,16 +1,9 @@
 # ECMA2015 (ES6) Quick Reference Guide
 This guide is designed to be a resource that outlines all of the major concepts of ES6 in a brief and concise manner. The concepts and some examples were taken from Nicholas C. Zakas' book "Understanding ECMAScript 6: The Definiitive Guide for Javscript Developers".
 
-Examples below will contain the following:
-  1. Title of the Concept
-  2. 
-  2. Breakdown of the Concept
-  3. Examples of the Concept
-
-
 # Table of Contents
   - [Block Bindings](#block-bindings)
-    - [Block Scopes](#block-scopes)
+    - [Block Scopes](#block-scopes-lexical-scopes)
     - [Declarations](#declarations)
     - Functions in Loops
   - Regular Expressions
@@ -37,32 +30,33 @@ Examples below will contain the following:
   - if `var` is defined outside of a block scope, it is hoisted to the global scope
 
 #### `let`
-**Difference between `var` and `let`
-  - `let` unlike `var` is not hoisted to the top of a funciton declaration
+`let`, unlike `var` is not hoisted to the top of a funciton declaration. Instead, `let` stays within its block. `let`
   - replace `var` with `let` to declare a variable but limit the variables scope to only the current code block
   - cannot redefine an already defined variable inside of a block scope
 
-#### `const`
-  - once defined, values cannot change
-  - must be initalized on declaration
-```js
-const item = 30;  // valid
-const item;       // invalid
+#### 
+Once the binding is defined, the binding cannot be changed. In addition to the singular value, `const` must be initalized on declaration.
+```javascript
+const item = 30;    // valid
+item = 50;          // invalid
+item = () => '50';  // invalid
+const item;         // invalid
 ```
-  - if the value is an object, the value **can** be changed. 
-  - declaration prevents the modification of the binding, not the value
+If the value that is bound is an _object_, the value **can** be changed. The declaration prevents the modification of the binding, not the value. The constant cannot be rebound to another binding.
 ```js
 const guy = { name: 'drew' };
 guy.name = 'steve';       // valid
 guy = { name: 'steve' }   // invalid
+guy = 'drew';             // invalid
+guy = () => 'drew';       // invalid
 ```
-#### Similarities
+**Similarities**
   - `const` and `let` are block level declarations and cannot be accessed outside of the block scope level scope they are defined in
   - if you use `var` in the global scope, a new variable is added to the global object `window` in browsers
   - if you use `let` and `const` in the global scope, a new binding is created in the global scope but **no property is added** to the global object
 
-#### Temporal Dead Zone
-  - cannot access a `let` or `const` declaration before is declaration due to the fact that it doesn't hoist
+**Temporal Dead Zone**
+A variable declared with `let` or `const` cannot be access until after the declaration. A variable decalred with `var` can due to the fact that is is _hoisted_ to the top of its function level definition.
 ```js
 console.log(typeof value);  // "undefined"
 if (condition) { let value = 'blue' };
@@ -77,27 +71,70 @@ if (condition) { let value = 'blue' };
 
 
 ## Strings
-#### Substrings
-  - `string.includes(substring)` returns `true` if the given text is found anywhere within the string
-  - `string.startsWith(substring)` returns `true` if the given text is found at the beginning of the string
-  - `string.endsWith(substring)` returns `true` if the given text is found at the end of the string
-  - `string.indexOf(substring)` & `string.lastIndexOf(substring)` should be used to find the position of a substring within the string
-  - `indexOf()` and `lastIndexOf()` can be used with regular expressions
-  - `includes()`, `startsWith()`, and `endsWith()` **cannot** be used with regular expressions
+### Identifying Substrings
 
-#### Template Literals
-  - act like regular strings delimited by backticks (`) instead of double or single quotes
-  - to use a backtick in a string, escape it with a `\`
-  - multi-line template literals require no special syntax; just type a next line. However, all white space is a part of the string so watch out for the indentation
+#### `includes()`
+`str.includes(sbstr)` returns `true` if the given text is found anywhere within the string
+```js
+let msg = `bookkeeper`;
+console.log(msg.includes('keep'))   // true
+console.log(msg.includes('keeps'))  // false
+```
+
+#### `startsWith()`
+`.strstartsWith(sbstr)` returns `true` if the given text is found at the beginning of the string
+```js
+let msg = `bookkeeper`;
+console.log(msg.includes('book'))     // true
+console.log(msg.includes('keeper'))   // false
+```
+
+#### `endsWith()`
+`str.endsWith(sbstr)` returns `true` if the given text is found at the end of the string
+```js
+let msg = `bookkeeper`;
+console.log(msg.includes('keeper'))   // true
+console.log(msg.includes('book'))     // false
+```
+
+#### ES5 Translated Concepts
+`str.indexOf(sbstr)` & `str.lastIndexOf(sbstr)` should be used to find the position of a substring within the string
+`indexOf()` and `lastIndexOf()` can be used with regular expressions
+`includes()`, `startsWith()`, and `endsWith()` **cannot** be used with regular expressions
+
+
+### Template Literals
+#### General
+Defined by using back ticks instead of a double or single quote
+```js
+let message = `This is the message`;
+let otherMessage = `This is the message`;
+
+console.log(message === otherMessage) // true
+```
+Supports multi-line string concatenation. White space, spaces, and tabs are all parsed and will output based upon what is tabbed.
 ```js
 const hw = `hello
 world`;
+console.log(hw);  
+// "hello
+// world"
 
-console.log(hw);  //"hello
-world"
+const hw2 = `hello
+    world`;
+console.log(hw2);
+// "hello
+//    world"
 ```
-  - an expression, variable, string, etc... can all be substitued inside of a template literal by enclosing it in `${jsExpression() || string || var || etc... }`;
-  - tags (TBD)
+An expression can be included by enclosing it in `${}`
+```js
+let name = 'Drew'
+const welcome = `Welcome to the team, ${name}!`;
+console.log(welcome)  // Welcome to the team, Drew!;
+```
+#### Tags
+A _template tag_ performs a transformation on the template literal and returns the final string value
+**Example TBD**
 
 
 
