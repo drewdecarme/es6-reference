@@ -17,7 +17,7 @@ This guide is designed to be a resource that outlines all of the major concepts 
     + [Spread Operator](#spread-operator)
     + Name
     + Block Level Functions
-    + [Arrow Functions]
+    + [Arrow Functions](#arrow-functions)
     + Tail Call Optimization
 
 
