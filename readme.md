@@ -375,7 +375,7 @@ let stuff = {
       // this refers to the this in stuff.id
   },
   doSomething(type) {
-    console.log(`Handle ${type} for ${this.id}`);
+    console.log(`Yoooo ${type} for ${this.id}`);
   }
 }
 ```
