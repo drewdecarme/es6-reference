@@ -283,6 +283,7 @@ Simply put, they're just functions declared using a fat arrow `=>`
 #### 1 Argument
 ```js
 let reflect = value => value;
+// ... is the same as
 let refelct = function(value) {
   return value;
 };
@@ -291,6 +292,7 @@ let refelct = function(value) {
 #### 2 Arguments
 ```js
 let add = (one, two) => one + two;
+// ... is the same as
 let add = function(one, two) {
   return one + two;
 };
@@ -299,6 +301,7 @@ let add = function(one, two) {
 #### No Arguments
 ```js
 let getStuff = () => 'the stuff';
+// ... is the same as
 function getStuff() {
   return 'the stuff';
 };
@@ -311,6 +314,7 @@ let calc = (a, b, c, ...d) => {
   let late = c + d[2];
   return u + late;
 };
+// ... is the same as
 function calc = (a, b, c, d, e, f) {
   let u = a + b;
   let late = c + f;
@@ -321,6 +325,7 @@ function calc = (a, b, c, d, e, f) {
 #### Return an Object
 ```js
 let getItem = id => ({ id: id, name: "temp" });
+// ... is the same as
 let getItem = function (id) {
   return {
     id: id,
