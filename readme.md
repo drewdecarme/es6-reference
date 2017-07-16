@@ -19,6 +19,10 @@ This guide is designed to be a resource that outlines all of the major concepts 
     + Block Level Functions
     + [Arrow Functions](#arrow-functions)
     + Tail Call Optimization
+  - Objects
+    + Literal Syntax
+    + Methods
+    + Prototype
 
 
 ## Block Bindings
@@ -383,6 +387,23 @@ let stuff = {
 
 
 ### Tail Call Optimization
+
+## Objects
+### Literal Syntax
+#### Property Initializer
+#### Concise Methods
+**Formal Method Definition**
+#### Computed Property Names
+
+### Methods
+#### `Object.is()`
+#### `Object.assign()`
+#### Duplicate Object Literal Keys
+#### Enumeration
+
+### Prototype
+#### Changing an Objects Prototype
+#### Super
 
 
 
