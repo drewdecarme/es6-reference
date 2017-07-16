@@ -283,7 +283,9 @@ Simply put, they're just functions declared using a fat arrow `=>`
 #### 1 Argument
 ```js
 let reflect = value => value;
+
 // ... is the same as
+
 let refelct = function(value) {
   return value;
 };
