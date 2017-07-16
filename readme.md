@@ -8,7 +8,7 @@ This guide is designed to be a resource that outlines all of the major concepts 
     + Functions in Loops
   - Regular Expressions
   - [Strings](#strings)
-    + [Substrings](#substrings)
+    + [Substrings](#identifying-substrings)
     + [Template Literals](#template-literals)
     + Tags
   - [Functions](#functions)
@@ -137,9 +137,8 @@ console.log(msg.endsWith('book'))     // false
 ```
 
 #### ES5 Translated Concepts
-`str.indexOf(sbstr)` & `str.lastIndexOf(sbstr)` should be used to find the position of a substring within the string and **can** be used with regular expressions
-
-`includes()`, `startsWith()`, and `endsWith()` **cannot** be used with regular expressions
+  - `str.indexOf(sbstr)` & `str.lastIndexOf(sbstr)` should be used to find the position of a substring within the string and **can** be used with regular expressions
+  - `includes()`, `startsWith()`, and `endsWith()` **cannot** be used with regular expressions
 
 
 
