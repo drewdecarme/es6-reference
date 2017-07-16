@@ -24,7 +24,7 @@ This guide is designed to be a resource that outlines all of the major concepts 
 ## Block Bindings
 ### Block Scopes (Lexical Scopes)
   - can be placed inside of a function or inside of a block
-  - mimicks the same uniforimity as in c-based languages
+  - mimics the same uniformity as in c-based languages
 
 ### Declarations
 #### `var`
@@ -271,21 +271,10 @@ if (true) {
 ### Arrow Functions
 Simply put, they're just functions declared using a fat arrow `=>`
 
-#### Notable Differences from `function()`
-  - No `this`, `arguments`, and `new.target` bindings
-  - Cannot be called with `new`
-  - No `prototype`
-  - Cannot change `this`
-  - No `arguments` object
-  - No duplicate named parameters
-  - Possess the `name` property
-
 #### 1 argument
 ```js
 let reflect = value => value;
-
 // ... is the same as
-
 let refelct = function(value) {
   return value;
 };
@@ -294,9 +283,7 @@ let refelct = function(value) {
 #### 2 arguments
 ```js
 let add = (one, two) => one + two;
-
 // ... is the same as
-
 let add = function(one, two) {
   return one + two;
 };
@@ -305,9 +292,7 @@ let add = function(one, two) {
 #### No arguments
 ```js
 let getStuff = () => 'the stuff';
-
 // ... is the same as
-
 function getStuff() {
   return 'the stuff';
 };
@@ -320,9 +305,7 @@ let calc = (a, b, c, ...d) => {
   let late = c + d[2];
   return u + late;
 };
-
 // ... is the same as
-
 function calc = (a, b, c, d, e, f) {
   let u = a + b;
   let late = c + f;
@@ -333,9 +316,7 @@ function calc = (a, b, c, d, e, f) {
 #### Return an Object
 ```js
 let getItem = id => ({ id: id, name: "temp" });
-
 // ... is the same as
-
 let getItem = function (id) {
   return {
     id: id,
@@ -357,6 +338,33 @@ let person = (name => {
 console.log(person.getName());  // "Drew"
 ```
 
+#### Notable Differences from `function()`
+  - No `this`, `arguments`, and `new.target` bindings
+  - Cannot be called with `new`
+  - No `prototype`
+  - Cannot change `this`
+  - No `arguments` object
+  - No duplicate named parameters
+  - Possess the `name` property
+
+#### No `this`
+The value of `this` inside an arrow function can only be determined by looking up the scope chain.
+  - If the arrow function is contained within a non-arrow function, `this` will be the same as the containing function.
+  - If the arrow function is contained within an arrow function, `this` refers to the contained arrow function
+  - If the arrow function is contained outside of a non-arrow function, `this` refers to the global scope
+```js
+let stuff = {
+  id: '99128dfasdf',
+  init() {
+    document
+      .addEventListener('click', event => this.doSomething(event.type), false);
+      // this refers to the this in stuff.id
+  },
+  doSomething(type) {
+    console.log(`Handle ${type} for ${this.id}`);
+  }
+}
+```
 
 
 
