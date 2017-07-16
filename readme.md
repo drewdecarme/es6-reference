@@ -3,20 +3,22 @@ This guide is designed to be a resource that outlines all of the major concepts 
 
 # Table of Contents
   - [Block Bindings](#block-bindings)
-    - [Block Scopes](#block-scopes-lexical-scopes)
-    - [Declarations](#declarations)
-    - Functions in Loops
+    + [Block Scopes](#block-scopes-lexical-scopes)
+    + [Declarations](#declarations)
+    + Functions in Loops
   - Regular Expressions
-    - Unicode Support
-      - codepointAt()
-      - normalize()
-      - u flag
-      - y flag
   - [Strings](#strings)
-    - [Substrings](#substrings)
-    - [Template Literals](#template-literals)
-    - Tags
+    + [Substrings](#substrings)
+    + [Template Literals](#template-literals)
+    + Tags
   - [Functions](#functions)
+    + [Default Parameters](#default-parameters)
+    + [Rest Parameters](#rest-parameters)
+    + [Spread Operator](#spread-operator)
+    + Name
+    + Block Level Functions
+    + [Arrow Functions]
+    + Tail Call Optimization
 
 
 ## Block Bindings
@@ -185,7 +187,6 @@ A _template tag_ performs a transformation on the template literal and returns t
 
 ## Functions
 ### Default Parameters
-#### Define
 Define default values by using an `=` sign.
 ```js
 function getValue() {
@@ -199,7 +200,7 @@ const request = (url, timeout = 20000, callback = getValue()) => {
 }
 ```
 
-### Previous for Later
+#### Previous for Later
 Use a previous parameter as the default for a later parameter
 ```js
 function add(first, second = first){
