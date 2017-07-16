@@ -280,7 +280,7 @@ Simply put, they're just functions declared using a fat arrow `=>`
   - No duplicate named parameters
   - Possess the `name` property
 
-#### 1 Argument
+#### 1 argument
 ```js
 let reflect = value => value;
 
@@ -291,32 +291,38 @@ let refelct = function(value) {
 };
 ```
 
-#### 2 Arguments
+#### 2 arguments
 ```js
 let add = (one, two) => one + two;
+
 // ... is the same as
+
 let add = function(one, two) {
   return one + two;
 };
 ```
 
-#### No Arguments
+#### No arguments
 ```js
 let getStuff = () => 'the stuff';
+
 // ... is the same as
+
 function getStuff() {
   return 'the stuff';
 };
 ```
 
-#### More than Return Statement
+#### More than just a return statement
 ```js
 let calc = (a, b, c, ...d) => {
   let u = a + b;
   let late = c + d[2];
   return u + late;
 };
+
 // ... is the same as
+
 function calc = (a, b, c, d, e, f) {
   let u = a + b;
   let late = c + f;
@@ -327,7 +333,9 @@ function calc = (a, b, c, d, e, f) {
 #### Return an Object
 ```js
 let getItem = id => ({ id: id, name: "temp" });
+
 // ... is the same as
+
 let getItem = function (id) {
   return {
     id: id,
@@ -336,7 +344,7 @@ let getItem = function (id) {
 };
 ```
 
-### Immediately Invoke
+#### Immediately Invoke
 Wrap the arrow function in parentheses
 ```js
 let person = (name => {
