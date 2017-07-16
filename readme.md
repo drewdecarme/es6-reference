@@ -31,7 +31,7 @@ This guide is designed to be a resource that outlines all of the major concepts 
 var otherStuff = 'things'
 
 function stuff(otherStuff) {
-  if(otherStuff == 'things'){
+  if(otherStuff === 'things'){
     var moreStuff = 'more things';
   }
   return this;
@@ -43,7 +43,8 @@ var otherStuff = 'things';
 
 function stuff(otherStuff) {
   var moreStuff = 'more things';
-  if(otherStuff == 'things'){
+
+  if(otherStuff === 'things'){
   }
   return this;
 }
@@ -74,13 +75,27 @@ guy = { name: 'steve' }   // invalid
 guy = 'drew';             // invalid
 guy = () => 'drew';       // invalid
 ```
-**Similarities**
-  - `const` and `let` are block level declarations and cannot be accessed outside of the block scope level scope they are defined in
-  - if you use `var` in the global scope, a new variable is added to the global object `window` in browsers
-  - if you use `let` and `const` in the global scope, a new binding is created in the global scope but **no property is added** to the global object
+#### Similarities
+`const` and `let` are block level declarations and cannot be accessed outside of the block scope level scope they are defined in
+```js
+function doStuff(){
+  let things = 'things'
+  if (typeof things === 'string') {
+    console.log(things);  // "undefined"
+  }
+  console.log(things);  // "things"
+}
+```
+If you use `let` and `const` in the global scope, a new binding is created in the global scope but **no property is added** to the global object
+```js
+var house = 'brick';
+let car = 'ford';
+console.log(window.house) // "brick"
+console.log(window.car)   // "undefined"
+```
 
-**Temporal Dead Zone**
-A variable declared with `let` or `const` cannot be access until after the declaration. A variable decalred with `var` can due to the fact that is is _hoisted_ to the top of its function level definition.
+### Temporal Dead Zone
+A variable declared with `let` or `const` cannot be access until after the declaration. A variable declared with `var` **can** due to the fact that is is _hoisted_ to the top of its function level definition.
 ```js
 console.log(typeof value);  // "undefined"
 if (condition) { let value = 'blue' };
