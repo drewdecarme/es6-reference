@@ -269,7 +269,7 @@ if (true) {
 }
 ```
 ### Arrow Functions
-Simply put, they're just functions declared using a fat arrow `=>`
+Simply put, they're just functions declared using a fat arrow `=>`. They're appropriate to use anywhere you're currently using an anonymous function expression, such as with callbacks.
 
 #### 1 argument
 ```js
@@ -338,6 +338,13 @@ let person = (name => {
 console.log(person.getName());  // "Drew"
 ```
 
+#### Array Processing
+```js
+let values = [1, 45, 3, 5, 7, 10];
+let sorted = values.sort((a, b) => a - b);
+console.log(sorted);  // [1, 3, 5, 7, 10, 45]
+```
+
 #### Notable Differences from `function()`
   - No `this`, `arguments`, and `new.target` bindings
   - Cannot be called with `new`
@@ -346,6 +353,13 @@ console.log(person.getName());  // "Drew"
   - No `arguments` object
   - No duplicate named parameters
   - Possess the `name` property
+
+#### No `new`
+Arrow functions are designed to be throwaway functions and cannot be used to define new types
+```js
+var type = () => {};
+let object = new type() // error!
+```
 
 #### No `this`
 The value of `this` inside an arrow function can only be determined by looking up the scope chain.
