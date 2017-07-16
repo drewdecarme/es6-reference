@@ -25,6 +25,7 @@ This guide is designed to be a resource that outlines all of the major concepts 
     + Prototype
 
 
+
 ## Block Bindings
 ### Block Scopes (Lexical Scopes)
   - can be placed inside of a function or inside of a block
