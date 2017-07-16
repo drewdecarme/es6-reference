@@ -194,9 +194,6 @@ function getValue() {
 function request(url, timeout = 2000, callback = getValue()) {
   console.log(callback());  // 5
 }
-const request = (url, timeout = 20000, callback = getValue()) => {
-  console.log(callback());  // 5
-}
 ```
 
 #### Previous for Later
@@ -233,8 +230,8 @@ function add(first = second, second) {
 If there is an unknown amount of parameters passed into a function, using three dots followed by a string `...stuff` will throw all of those unnamed parameters into an array. There can only be 1 rest parameter and it has to be the _last_ parameter
 ```js
 function doSomething(first, second, third, ...rest){
-  console.log(typeof rest === 'object'); // true
-  console.log(rest[1]);  // 5
+  console.log(typeof rest === 'object');    // true
+  console.log(rest[1]);                     // 5
 }
 doSomething(1, 2, 3, 4, 5, 6, 7);
 ```
@@ -242,6 +239,13 @@ doSomething(1, 2, 3, 4, 5, 6, 7);
 
 ### Spread Operator
 Allows you to specify an array that should be split and passed in as separate arguments to a function
+```js
+let values = [25, 50, 75, 100];
+// ES5
+console.log(Math.max.apply(Math, values));  // 100
+// ES6
+console.log(Math.max(...values));           // 100
+```
 
 ### Name
 ### Block Level Functions
