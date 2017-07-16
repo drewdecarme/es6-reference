@@ -248,7 +248,26 @@ console.log(Math.max(...values));           // 100
 ```
 
 ### Name
+### Target
 ### Block Level Functions
+Block level functions declared without `let` act like `var` declarations in that they are hoisted to the top of their block definition. Block level functions declared using `let` or `const` remain in their block and aren't hoisted.
+```js
+if (true) {
+  console.log(doSomething());           // "I did it!"
+  console.log(typeof doSomethingElse);  // throws an error
+
+  function doSomething() {
+    return 'I did it!';
+  }
+
+  let doSomethingElse = function() {
+    return 'Huh?'
+  }
+
+  console.log(doSomething());           // "I did it!"
+  console.log(typeof doSomethingElse);  // "function"
+}
+```
 ### Arrow Functions
 ### Tail Call Optimization
 
