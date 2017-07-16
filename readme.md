@@ -94,24 +94,22 @@ console.log(window.house) // "brick"
 console.log(window.car)   // "undefined"
 ```
 
-### Temporal Dead Zone
-A variable declared with `let` or `const` cannot be access until after the declaration. A variable declared with `var` **can** due to the fact that is is _hoisted_ to the top of its function level definition.
+#### Temporal Dead Zone
+A variable declared with `let` or `const` cannot be accessed until after the declaration. A variable declared with `var` **can** due to the fact that is is _hoisted_ to the top of its function level definition.
 ```js
 console.log(typeof value);  // "undefined"
 if (condition) { let value = 'blue' };
 ```
-
 ### Functions in Loops (TBD)
 
 
 
-## Regular Expressions
+## Regular Expressions (TBD)
 
 
 
 ## Strings
 ### Identifying Substrings
-
 #### `includes()`
 `str.includes(sbstr)` returns `true` if the given text is found anywhere within the string
 ```js
@@ -121,29 +119,30 @@ console.log(msg.includes('keeps'))  // false
 ```
 
 #### `startsWith()`
-`.strstartsWith(sbstr)` returns `true` if the given text is found at the beginning of the string
+`.str.startsWith(sbstr)` returns `true` if the given text is found at the beginning of the string
 ```js
 let msg = `bookkeeper`;
-console.log(msg.includes('book'))     // true
-console.log(msg.includes('keeper'))   // false
+console.log(msg.startsWith('book'))     // true
+console.log(msg.startsWith('keeper'))   // false
 ```
 
 #### `endsWith()`
 `str.endsWith(sbstr)` returns `true` if the given text is found at the end of the string
 ```js
 let msg = `bookkeeper`;
-console.log(msg.includes('keeper'))   // true
-console.log(msg.includes('book'))     // false
+console.log(msg.endsWith('keeper'))   // true
+console.log(msg.endsWith('book'))     // false
 ```
 
 #### ES5 Translated Concepts
-`str.indexOf(sbstr)` & `str.lastIndexOf(sbstr)` should be used to find the position of a substring within the string
-`indexOf()` and `lastIndexOf()` can be used with regular expressions
+`str.indexOf(sbstr)` & `str.lastIndexOf(sbstr)` should be used to find the position of a substring within the string and **can** be used with regular expressions
+
 `includes()`, `startsWith()`, and `endsWith()` **cannot** be used with regular expressions
 
 
+
 ### Template Literals
-#### General
+#### Simple Literal
 Defined by using back ticks instead of a double or single quote
 ```js
 let message = `This is the message`;
@@ -151,6 +150,8 @@ let otherMessage = `This is the message`;
 
 console.log(message === otherMessage) // true
 ```
+
+#### Multi-line Literal
 Supports multi-line string concatenation. White space, spaces, and tabs are all parsed and will output based upon what is tabbed.
 ```js
 const hw = `hello
@@ -165,22 +166,83 @@ console.log(hw2);
 // "hello
 //    world"
 ```
+
+#### Substitutions
 An expression can be included by enclosing it in `${}`
 ```js
 let name = 'Drew'
 const welcome = `Welcome to the team, ${name}!`;
 console.log(welcome)  // Welcome to the team, Drew!;
 ```
+
 #### Tags
 A _template tag_ performs a transformation on the template literal and returns the final string value
 **Example TBD**
+
+#### Raw Values
 
 
 
 ## Functions
 ### Default Parameters
+#### Define
+Define default values by using an `=` sign.
+```js
+function getValue() {
+  return 5;
+}
+function request(url, timeout = 2000, callback = getValue()) {
+  console.log(callback());  // 5
+}
+const request = (url, timeout = 20000, callback = getValue()) => {
+  console.log(callback());  // 5
+}
+```
+
+### Previous for Later
+Use a previous parameter as the default for a later parameter
+```js
+function add(first, second = first){
+  return first + second
+}
+console.log(add(1, 1))  // 2
+console.log(add(1))     // 2
+```
+
+#### Previous for Later Functional Parameter
+Use a previous parameter as the parameter for a later functional parameter
+```js
+function getValue(value) {
+  return value + 5;
+}
+function add(first, second = getValue(first)) {
+  return first + second;
+}
+console.log(add(1, 1))  // 2
+console.log(add(1))     // 7
+```
+#### Exceptions
+You cannot use a later parameter as the default for a previous parameter
+```js
+function add(first = second, second) {
+  // second hasn't been declared yet, so first cannot use it
+}
+```
+
 ### Rest Parameters
+If there is an unknown amount of parameters passed into a function, using three dots followed by a string `...stuff` will throw all of those unnamed parameters into an array. There can only be 1 rest parameter and it has to be the _last_ parameter
+```js
+function doSomething(first, second, third, ...rest){
+  console.log(typeof rest === 'object'); // true
+  console.log(rest[1]);  // 5
+}
+doSomething(1, 2, 3, 4, 5, 6, 7);
+```
+
+
 ### Spread Operator
+Allows you to specify an array that should be split and passed in as separate arguments to a function
+
 ### Name
 ### Block Level Functions
 ### Arrow Functions
