@@ -269,6 +269,82 @@ if (true) {
 }
 ```
 ### Arrow Functions
+Simply put, they're just functions declared using a fat arrow `=>`
+
+#### Notable Differences from `function()`
+  - No `this`, `arguments`, and `new.target` bindings
+  - Cannot be called with `new`
+  - No `prototype`
+  - Cannot change `this`
+  - No `arguments` object
+  - No duplicate named parameters
+  - Possess the `name` property
+
+#### 1 Argument
+```js
+let reflect = value => value;
+let refelct = function(value) {
+  return value;
+};
+```
+
+#### 2 Arguments
+```js
+let add = (one, two) => one + two;
+let add = function(one, two) {
+  return one + two;
+};
+```
+
+#### No Arguments
+```js
+let getStuff = () => 'the stuff';
+function getStuff() {
+  return 'the stuff';
+};
+```
+
+#### More than Return Statement
+```js
+let calc = (a, b, c, ...d) => {
+  let u = a + b;
+  let late = c + d[2];
+  return u + late;
+};
+function calc = (a, b, c, d, e, f) {
+  let u = a + b;
+  let late = c + f;
+  return u + late;
+};
+```
+
+#### Return an Object
+```js
+let getItem = id => ({ id: id, name: "temp" });
+let getItem = function (id) {
+  return {
+    id: id,
+    name: "Temp"
+  };
+};
+```
+
+### Immediately Invoke
+Wrap the arrow function in parentheses
+```js
+let person = (name => {
+  return {
+    getName: function() {
+      return name;
+    }
+  }
+})('Drew');
+console.log(person.getName());  // "Drew"
+```
+
+
+
+
 ### Tail Call Optimization
 
 
